@@ -96,7 +96,7 @@ def getNamesFromSource(sourceFile, output):
     if ("Sorry" not in lines) and ("Bing Privacy Policy" not in lines) or True:
 
         # OLD subS = '<div class="_1zf"><div class="_zs fwb" data-bt="{&quot;ct&quot;:&quot;title&quot;}"><a href="https://www.facebook.com/'
-        subS= '</div><div class="_gll"><a href="https://www.facebook.com/'
+        subS= '</div><div class="_gll"><div><a href="https://www.facebook.com/'
         subE = 'ref=br_rs'
 
         while (True):

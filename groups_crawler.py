@@ -5,7 +5,7 @@ from pickle import *
 from datetime import *
 import os
 import sys
-from IPython import *
+#from IPython import *
 
 import time
 
@@ -84,11 +84,11 @@ def getGroupMembers(d, group_id_list):
             print namesRes
             updateHash(namesRes.split("\n"),work)
         except:
-            print "NOTICE "+ work + "has failed " + "you should delete it's accounts file.."
+            print "NOTICE "+ work + " has failed " + "you should delete it's accounts file.."
 
-        exitLogin(d)
-        count += 1
-        tryLogin(d,users[count % (len(users))],passes[count% (len(passes))])
+        #exitLogin(d)
+        #count += 1
+        #tryLogin(d,users[count % (len(users))],passes[count% (len(passes))])
 
 
 
