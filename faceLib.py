@@ -71,7 +71,7 @@ def filterOutId(name):
         subE="&amp"
         start = name.find(subS, 0)
         start += len(subS)
-        end = name.find(subE, start) - 1
+        end = name.find(subE, start)
         return name[start:end]
 
     return name
