@@ -86,9 +86,9 @@ def getGroupMembers(d, group_id_list):
         except:
             print "NOTICE "+ work + " has failed " + "you should delete it's accounts file.."
 
-        #exitLogin(d)
-        #count += 1
-        #tryLogin(d,users[count % (len(users))],passes[count% (len(passes))])
+        exitLogin(d)
+        count += 1
+        tryLogin(d,users[count % (len(users))],passes[count% (len(passes))])
 
 
 
