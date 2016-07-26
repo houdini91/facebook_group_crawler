@@ -239,8 +239,8 @@ def getMutualFriendsById(d, id_arg, idFile, output):
     print hash
     res = ""
 
-    users = ["mdstrauss91@gmail.com","alphasmith123456@gmail.com","deltasmith123456@gmail.com","tomersemo@mac.com"]
-    passs = ["googlygoo","googlygoo","googlygoo","Tomer0014"]
+    users = []
+    passs = []
 
     # Loop all lines
     count = 0
