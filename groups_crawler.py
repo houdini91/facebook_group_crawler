@@ -86,6 +86,7 @@ def getGroupMembers(d, group_id_list):
         except:
             print "NOTICE "+ work + " has failed " + "you should delete it's accounts file.."
 
+	
         exitLogin(d)
         count += 1
         tryLogin(d,users[count % (len(users))],passes[count% (len(passes))])
@@ -269,7 +270,7 @@ def getGroupIdByQuery(d,query_arg, groupName):
     #return d.page_source.encode("utf8")
 
 
-#d = webdriver.Chrome()
+#d = webdriver.Chrome(chrome_options=opt)
 #tryLogin(d,"mdstrauss91@gmail.com","boogybar91")
 
 '''
@@ -278,7 +279,7 @@ print groups
 getGroupMembers(d,groups)
 printCSV()'''
 
-'''d = webdriver.Chrome()
+'''d = webdriver.Chrome(chrome_options=opt)
 tryLogin(d,"mdstrauss91@gmail.com","boogybar91")
 groups = getGroupsToCheck(True)
 print groups
@@ -619,6 +620,26 @@ def moveGroupIds(inputFile, outputFile):
 def outputIdToGroupConnection(id_arg, nameList):
     print "nothing yet."
 
+	
+def fixWebdriverOptions():
+    try:
+        opt = webdriver.ChromeOptions()
+        #maximize window
+        opt.add_argument("--start-maximized")
+        #disable error
+        opt.add_argument("--test-type")
+        #disable extensions
+        opt.add_argument("--disable-extensions");
+        #disable notifications
+        prefs = {"profile.default_content_setting_values.notifications" : 2}
+        opt.add_experimental_option("prefs",prefs)
+
+        return opt
+
+    except:
+        print "Fix Options FAILED"
+        exit()
+	
 
 def printHelp():
     print "USAGE: "
@@ -630,19 +651,20 @@ def printHelp():
 
 if __name__  == "__main__":
     #print len(sys.argv)
+    opt = fixWebdriverOptions()
     if(len(sys.argv) == 2):
             if(sys.argv[1] == "run"):
                 read_user_file()
                 groups = getGroupsToCheck(False)
                 if(len(groups) != 0):
-                    d = webdriver.Chrome()
+                    d = webdriver.Chrome(chrome_options=opt)
                     tryLogin(d,users[0],passes[0])
                     getGroupMembers(d,groups)
                     createCSV("CSV\\MainHash_" + datetime.strftime(datetime.today(),"%d_%m_%y#%H-%M"),getHash())
                     d.quit()
             elif( sys.argv[1] == "reboot" ):
                 read_user_file()
-                d = webdriver.Chrome()
+                d = webdriver.Chrome(chrome_options=opt)
                 tryLogin(d,users[0],passes[0])
                 initHash()
                 groups = getGroupsToCheck(True)
@@ -658,7 +680,7 @@ if __name__  == "__main__":
             createCSV("CSV\\MainHash_" + datetime.strftime(datetime.today(),"%d_%m_%y#%H-%M"),getHash())
         elif(sys.argv[1] == "getGroupIds"):
             read_user_file()
-            d = webdriver.Chrome()
+            d = webdriver.Chrome(chrome_options=opt)
             tryLogin(d,users[0],passes[0])
             readGroupsAndGetIds(d, sys.argv[2].strip())
             d.quit()
@@ -669,12 +691,12 @@ if __name__  == "__main__":
     elif(len(sys.argv) == 4 ):
         if(sys.argv[1] == "keywordSearch"):
             read_user_file()
-            d = webdriver.Chrome()
+            d = webdriver.Chrome(chrome_options=opt)
             tryLogin(d,users[0],passes[0])
             getGroupsList(d,sys.argv[2],sys.argv[3])
         elif(sys.argv[1] == "userToGroupConnection"):
             read_user_file()
-            d = webdriver.Chrome()
+            d = webdriver.Chrome(chrome_options=opt)
             tryLogin(d,users[0],passes[0])
             res = getIdtoGroupConnection(d,sys.argv[2],"accounts\\accounts_" + sys.argv[3] + ".txt",sys.argv[3],"string")
         else:

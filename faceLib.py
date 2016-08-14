@@ -49,11 +49,11 @@ def getSourceByQuery(d, id, query_arg, output):
     while ("End of Results" not in d.page_source)  and ("Bing Privacy Policy" not in d.page_source): #and ("Sorry" not in d.page_source)
         sourceSample = d.page_source
         d.execute_script("window.scrollBy(0,10000)", "")
-        count += 1
         if(sourceSample == d.page_source):
-            break
-       # if(count >= 700):
-         #   break
+			count += 1
+			#in case something goes wrong if source doesn't update for 300 rounds go on..
+			if(count >= 300):
+				break
 
     # Write output to file
     if output == "string":
@@ -239,8 +239,8 @@ def getMutualFriendsById(d, id_arg, idFile, output):
     print hash
     res = ""
 
-    users = []
-    passs = []
+    users = ["mdstrauss91@gmail.com","alphasmith123456@gmail.com","deltasmith123456@gmail.com","tomersemo@mac.com"]
+    passs = ["googlygoo","googlygoo","googlygoo","Tomer0014"]
 
     # Loop all lines
     count = 0
