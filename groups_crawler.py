@@ -598,7 +598,7 @@ def getIdtoGroupConnection(d, userName, groupMembersListFile,groupId, output):
         print "do nothing for now"
         resFile = open(output,'w+')
         resFile.write(res)
-        #resFile.close()
+        resFile.close()
 
 
 
@@ -625,9 +625,9 @@ def fixWebdriverOptions():
     try:
         opt = webdriver.ChromeOptions()
         #maximize window
-        opt.add_argument("--start-maximized")
+        #opt.add_argument("--start-maximized")
         #disable error
-        opt.add_argument("--test-type")
+        #opt.add_argument("--test-type")
         #disable extensions
         opt.add_argument("--disable-extensions");
         #disable notifications
@@ -648,7 +648,8 @@ def printHelp():
     print " groups_crawler.py reboot"
     print " groups_crawler.py keywordSearch [keyword file] [output file]"
     print " groups_crawler.py userToGroupConnection [username] [groupId]"
-
+	
+	
 if __name__  == "__main__":
     #print len(sys.argv)
     opt = fixWebdriverOptions()
